@@ -31,7 +31,7 @@
                         </div>
                         <a href="room" class="bk-btn">Booking Now</a>
                         <c:if test="${sessionScope.account == null}">
-                            <a href="Login.jsp" class="login">Login</a>
+                            <a href="login.jsp" class="login">Login</a>
                         </c:if>
                         <c:if test="${sessionScope.account != null}">
                             <a href="logout" class="inf">LogOut</a>

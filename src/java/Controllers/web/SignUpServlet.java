@@ -1,56 +1,62 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controllers.web;
 
-import Entites.web.Guest;
-import Service.web.ILoginService;
-import Service.web.impl.LoginService;
+import config.Validation;
+import Entites.web.GuestEntity;
+import Service.web.impl.AuthenticateService;
+
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author ASUS-PRO
- */
-@WebServlet(name = "SignUpServlet", urlPatterns = {"/signup"})
+@WebServlet(name = "SignUpController", value = "/sign-up")
 public class SignUpServlet extends HttpServlet {
+    private Validation validation = new Validation();
+    private AuthenticateService service = new AuthenticateService();
+
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        String fitstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
-        String pass = request.getParameter("pass");
-        String repass = request.getParameter("repass");
-
-        ILoginService service = new LoginService();
-
-        Guest checkEmailExit = service.checkEmailExit(email);
-        Guest checkPhoneExit = service.checkPhoneExit(phone);
-        if (checkEmailExit != null || checkPhoneExit != null) {
-            request.setAttribute("message", "Email or Phone is exit!");
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
-        } else {
-            if (pass.equals(repass)) {
-                service.signUp(fitstName, lastName, email, phone, pass);
-                System.out.println("Sign up success");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
-            } else {
-                request.setAttribute("message", "Repassword is invalid!");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
-            }
-
-        }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("signup.jsp").forward(request, response);
     }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        String dob = request.getParameter("dob");
+        String gender = request.getParameter("gender");
+        String phonenumber = request.getParameter("phonenumber");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String passport = request.getParameter("passport");
+        String address = request.getParameter("address");
+
+//        if (validation.isDateValid(dob) == false) {
+//            request.setAttribute("MSG", "Date of birth is not valid/ wrong format...");
+//            request.getRequestDispatcher("signup.jsp").forward(request, response);
+//        } else
+            if (service.checkEmailExist(email) == true) {
+            request.setAttribute("MSG", "Sign up fail! Your email has exist");
+            request.getRequestDispatcher("signup.jsp").forward(request, response);
+        } else {
+            GuestEntity guest = new GuestEntity();
+            guest.setFirstName(firstname);
+            guest.setLastName(lastname);
+            guest.setEmail(email);
+            guest.setAddress(address);
+            guest.setPassword(password);
+            guest.setPassport(passport);
+            guest.setGender(gender);
+            guest.setPhoneNumber(phonenumber);
+            guest.setDob(dob);
+            boolean isSignupSuccess = service.checkSignup(guest);
+            if (isSignupSuccess == false) {
+                request.setAttribute("MSG", "Sign up fail!!!");
+                request.getRequestDispatcher("signup.jsp").forward(request, response);
+            } else {
+                request.setAttribute("MSGS", "Sign up successfully. Please login to continue...");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            }
+        }
+    }
 }

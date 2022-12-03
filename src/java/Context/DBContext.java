@@ -15,12 +15,12 @@ import java.sql.DriverManager;
 public class DBContext {
 
     static Connection conn = null;
-    private static final String serverName = "LAPTOP-0IB3OE91\\\\SQLEXPRESS"; //"LAPTOP-0IB3OE91\\SQLEXPRESS"; 
+    private static final String serverName = "DESKTOP-84SCD87"; //"LAPTOP-0IB3OE91\\SQLEXPRESS"; 
     private static final String dbName = "LUNA_HOTEL";//"LUNA_HOTEL";
     private static final String portNumber = "1433";
     private static final String instance = "";
     private static final String userID = "sa";
-    private static final String password = "huuthang";//"huuthang";
+    private static final String password = "123456";//"huuthang";
 
     private DBContext() {
     }
