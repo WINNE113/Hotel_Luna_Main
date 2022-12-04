@@ -114,7 +114,7 @@
             </section>
 
 
-            <!-- Home Room Section Begin -->
+            <!-- b Room Section Begin -->
 
             <section class="hp-room-section">
                 <div class="container-fluid">

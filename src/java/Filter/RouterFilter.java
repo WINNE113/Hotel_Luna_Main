@@ -111,9 +111,7 @@ public class RouterFilter implements Filter {
 
         if (url.contains("Header.jsp") || url.contains("Footer.jsp")) {
             servletResponse.sendRedirect("home");
-        } else if (url.contains("Room.jsp")) {
-            servletResponse.sendRedirect("room");
-        }
+        } 
         Throwable problem = null;
         try {
             chain.doFilter(request, response);

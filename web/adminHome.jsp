@@ -34,7 +34,7 @@
                 <span class="name">LUNA HOTEL</span>
 
                 <div class="menu1">
-                    <span class="title1"> Quản lí </span>
+                    <span class="title1"> Quản lí </span>
                     <div class="item1">
                         <i class="far fa-folder"></i>
                         <a class="title2" href="adminhome">Quản lí tài khoản</a>
@@ -61,7 +61,8 @@
                     <div class="title10">
                         <a class="dropbtn">Admin</a>
                         <div class="dropdown-content">
-                            <a href="changePass.jsp">Quên mật khẩu</a>
+                            <a href="ForgetPassword.jsp">Quên mật khẩu</a>
+                            <a href="changePass.jsp">Đổi mật khẩu</a>
                             <a href="login.jsp">Logout</a>
                         </div>
                     </div>

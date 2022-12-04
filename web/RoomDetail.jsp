@@ -1,10 +1,6 @@
-<%-- 
-    Document   : RoomDetail
-    Created on : Nov 29, 2022, 8:30:10 AM
-    Author     : ASUS-PRO
---%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,20 +8,27 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="assets/css/main.css">
-        <link rel="stylesheet" href="assets/css/room-detail.css" />
+        <!--link boodstrap-->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+            />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="stylesheet" hre="assets/css/responsive-style.css" />
+        <link rel="stylesheet" href=assets/css/roomDetail.css />
         <title>Hotel</title>
     </head>
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
         <!-- 1.header-section Begin -->
-        <jsp:include page="Header.jsp"></jsp:include>
-        <!-- 1.header-section End -->
 
-        <!-- 2.Detail Section Begin -->
-        <div class="containerDetailRoom">
-            <div class="NameTypeRoom"><h2>${type}</h2></div>
+        <jsp:include page="Header.jsp"></jsp:include>
+
+            <div class="containerDetailRoom">
+                <div class="NameTypeRoom"><h2>${type}</h2></div>
             <div class="RoomPicContainer">
                 <img src="${img}" alt="" class="RoomPic" />
                 <img src="${img}" alt="" class="RoomPic" />
@@ -89,22 +92,48 @@
             <div class="occupancy"><h4>occupancy: ${occ}</h4></div>
             <div class="floorNo"><h4>Floor : ${floor}</h4></div>
             <div class="price"><h4>Price: ${price} $</h4></div>
-<!--            <div class="CommentContainer">
-                <form class="formComment" action="">
-                    <p><label for="w3review">Comment:</label></p>
-                    <textarea id="w3review" name="w3review" rows="4" cols="90"></textarea>
-                    <br />
-                    <input type="submit" value="Submit" />
-                </form>
 
-            </div>-->
-            <!--<div class="showComment"></div>-->
+            <div class="comment-section" >
+                <div class="cardComment">
+                    <div class="row">
+                        <div class="col-2"> <img src="https://i.imgur.com/xELPaag.jpg" width="70" class="rounded-circle mt-2"> </div>
+                        <div class="col-10">
+                            <form action="commentcontrol" method="POST">
+
+                                <div class="comment-box ml-2">
+                                    <h4>Comment</h4>
+                                    <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> </div>
+                                    <div class="comment-area"> <textarea class="form-control" placeholder="what is your view?" rows="4" name="txtComment"></textarea> </div>
+                                    <div class="comment-btns mt-2">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="pull-left"> <button class="btn btn-success btn-sm">Cancel</button> </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="pull-right"> <button type="submit" class="btn btn-success send btn-sm">Send <i class="fa fa-long-arrow-right ml-1"></i></button> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div> 
+            </div>
+
+
+
+
         </div>
+
         <!-- 2.Detail Section End -->
 
         <!-- 3.Footer Section Begin -->
         <jsp:include page="Footer.jsp"></jsp:include>
         <!-- 3.Footer Section End -->
+
+        <!-- header -->
 
         <script src="js/main.js"></script>
 

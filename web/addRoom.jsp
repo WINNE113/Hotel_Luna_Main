@@ -1,6 +1,6 @@
 
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-<jsp:useBean id="Employee" class="Repository.EmployeeDAO"></jsp:useBean>
+<jsp:useBean id="Room" class="Dao.RoomDAO1"></jsp:useBean>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,7 +18,7 @@
     </head>
     <body>
         <div class="main">            
-            <form action="addProduct" method="POST">
+            <form action="addRoom" method="POST">
                 <span class="title">Tạo phòng mới</span>               
                 <span class="title2">Tên phòng</span>
                 <input name="name" class="txtname" type="text">

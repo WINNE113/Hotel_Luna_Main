@@ -61,7 +61,7 @@
                     <div class="title10">
                         <a class="dropbtn">Admin</a>
                         <div class="dropdown-content">
-                            <a href="changePass.jsp">Đổi mật khẩu</a>
+                            <a href="ForgetPassword">Đổi mật khẩu</a>
                             <a href="login.jsp">Logout</a>
                         </div>
                     </div>

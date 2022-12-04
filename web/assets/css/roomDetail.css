@@ -1,0 +1,248 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 3, 2022, 8:29:15 PM
+    Author     : ndatw
+*/
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 29, 2022, 8:33:53 AM
+    Author     : ASUS-PRO
+*/
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.body{
+    font-family: var(--primary-font);
+    background-color: var(--bg-white);
+
+} 
+/*---------------------
+Header
+-----------------------*/
+
+/*---------------------
+  DetailRoom Section
+-----------------------*/
+
+.containerDetailRoom {
+    width: 100%;
+}
+.NameTypeRoom{
+    width: 100%;
+    text-align: center;
+    color: #dfa974;
+}
+.RoomPicContainer{
+    width: 100%;
+    height: 250px;
+    margin-top:50px;
+    display: flex;
+}
+.RoomInfoDetailContainer{
+    width: 100%;
+    height: 250px;
+    margin-top: 50px;
+    display: flex;
+}
+.CommentContainer{
+    width: 100%;
+    height: 350px;
+    display: flex;
+    margin-top: 50px;
+}
+.RoomPic{
+    height: 100%;
+    width: 22%;
+    margin: auto;
+}
+table{
+    width: 80%;
+    margin: auto;
+    margin-top: 0px;
+}
+th,td{
+    border: 10px solid #ffffff ;
+}
+.formComment{
+    margin: auto;	
+}
+.roomService{
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-top: auto;
+    color: #dfa974;
+}
+.showComment{
+    width: 60%;
+    height: 400px;
+    background-color: #dfa974;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.occupancy,.floorNo,.price{
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    text-align: center;
+}
+
+    /*commnent*/
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 20px;
+    width: 450px;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: 6px;
+    -moz-box-shadow: 0px 0px 5px 0px rgba(212, 182, 212, 1)
+}
+.comment-box {
+    padding: 5px
+}
+.comment-area textarea {
+    resize: none;
+    border: 1px solid #ad9f9f
+}
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #ffffff;
+    outline: 0;
+    box-shadow: 0 0 0 1px rgb(255, 0, 0) !important
+}
+.send {
+    color: #fff;
+    background-color: #ff0000;
+    border-color: #ff0000
+}
+.send:hover {
+    color: #fff;
+    background-color: #f50202;
+    border-color: #f50202
+}
+.rating {
+    display: flex;
+    margin-top: -10px;
+    flex-direction: row-reverse;
+    margin-left: -4px;
+    float: left
+}
+.rating>input {
+    display: none
+}
+.rating>label {
+    position: relative;
+    width: 19px;
+    font-size: 25px;
+    color: #ff0000;
+    cursor: pointer
+}
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important
+}
+.rating>input:checked~label:before {
+    opacity: 1
+}
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
+}
+/*endcoment*/
+.comment-section {
+display: grid;
+place-items: center;
+font-family: 'Manrope', sans-serif;
+}
+.cardComment {
+position: relative;
+display: flex;
+flex-direction: column;
+min-width: 0;
+padding: 20px;
+width: 450px;
+word-wrap: break-word;
+background-color: #fff;
+background-clip: border-box;
+border-radius: 6px;
+-moz-box-shadow: 0px 0px 5px 0px rgba(212, 182, 212, 1)
+}
+.comment-box {
+padding: 5px
+}
+.comment-area textarea {
+resize: none;
+border: 1px solid #ad9f9f
+}
+.form-control:focus {
+color: #495057;
+background-color: #fff;
+border-color: #ffffff;
+outline: 0;
+box-shadow: 0 0 0 1px rgb(255, 0, 0) !important
+}
+.send {
+color: #fff;
+background-color: #ff0000;
+border-color: #ff0000
+}
+.send:hover {
+color: #fff;
+background-color: #f50202;
+border-color: #f50202
+}
+.rating {
+display: flex;
+margin-top: -10px;
+flex-direction: row-reverse;
+margin-left: -4px;
+float: left
+}
+.rating>input {
+display: none
+}
+.rating>label {
+position: relative;
+width: 19px;
+font-size: 25px;
+color: #ff0000;
+cursor: pointer
+}
+.rating>label::before {
+content: "\2605";
+position: absolute;
+opacity: 0
+}
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+opacity: 1 !important
+}
+.rating>input:checked~label:before {
+opacity: 1
+}
+.rating:hover>input:checked~label:before {
+opacity: 0.4
+}

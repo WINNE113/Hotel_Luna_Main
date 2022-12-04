@@ -16,7 +16,7 @@ public class DBContext {
 
     static Connection conn = null;
     private static final String serverName = "DESKTOP-84SCD87"; //"LAPTOP-0IB3OE91\\SQLEXPRESS"; 
-    private static final String dbName = "LUNA_HOTEL";//"LUNA_HOTEL";
+    private static final String dbName = "Luna_Hotel_Main";//"LUNA_HOTEL";
     private static final String portNumber = "1433";
     private static final String instance = "";
     private static final String userID = "sa";

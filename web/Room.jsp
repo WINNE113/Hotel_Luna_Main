@@ -238,7 +238,8 @@
                             <span>Result: ${total}</span>
                         </div>
                         <label id="filter_room">
-                            <c:forEach items="${listRoom}" var="item">
+                            
+                           <c:forEach items="${listRoom}" var="item">
                                 <div class="result_block">
                                     <div class="image_hotel">
                                         <img src="${item.roomImg}" alt="room hotel">
@@ -246,7 +247,8 @@
                                     <div class="content_hotel">
                                         <div class="main_content">
                                             <div class="title_hotel">
-                                                <span>${item.roomTypeName}</span>
+                                                <a href="RoomDetail?rid=${item.roomId}"><span>${item.roomTypeName}</span></a>
+                                                
                                             </div>
                                             <div class="address_hotel">
                                                 <span>${item.hotelAddress}</span>
