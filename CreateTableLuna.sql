@@ -132,7 +132,7 @@ USE LUNA_HOTEL;
 	
 
 	CREATE TABLE BookingStatus(
-		BookingStatusID smallint PRIMARY KEY,
+		BookingStatusID char(10) PRIMARY KEY,
 		BookingStatus nvarchar(30) DEFAULT 'AVAILABLE',
 		BookingDesc nvarchar(50),
 		BookingActive BIT,
@@ -152,16 +152,14 @@ USE LUNA_HOTEL;
 	
 
 	CREATE TABLE Booking(
-		BookingID smallint IDENTITY(1,1)PRIMARY KEY,
-		BookingDate date NOT NULL,
-		CheckInDate  date NOT NULL,
-		CheckOutDate  date NOT NULL,
-		NumPerson smallint NOT NULL,
-		BookingRoomCount int,
-		HotelCode varchar(10) FOREIGN KEY REFERENCES Hotel(HotelCode),
-		GuestID int FOREIGN KEY REFERENCES Guest(GuestID),
-		RoomNo smallint FOREIGN KEY REFERENCES Room(RoomNo),
-		BookingStatusID smallint FOREIGN KEY REFERENCES BookingStatus(BookingStatusID),
+		[BookingID] [int] IDENTITY(1,1) PRIMARY KEY,
+		[GuestID] [int] NOT NULL,
+		BookingStatusID char(10) FOREIGN KEY REFERENCES BookingStatus(BookingStatusID),
+		[TotalPrice] [decimal](7, 2) NULL,
+		[FullName] [nvarchar](20) NULL,
+		[Email] [nvarchar](30) NULL,
+		[PhoneNumber] [varchar](15) NULL,
+		[Address] [nvarchar](50) NULL,
 	)
 	
 	CREATE TABLE [dbo].[BookingDetail](
@@ -242,4 +240,3 @@ USE LUNA_HOTEL;
 	
 	)
 			 
-
