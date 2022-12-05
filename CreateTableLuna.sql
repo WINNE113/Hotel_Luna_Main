@@ -26,12 +26,24 @@ USE LUNA_HOTEL;
 	
 
 	CREATE TABLE Account(
-		id int PRIMARY KEY IDENTITY(1,1),
+		id int IDENTITY(1,1) PRIMARY KEY,
 		username varchar(50),
 		pass varchar(50),
 		isAdmin BIT,
 	)
-
+	
+	
+	CREATE TABLE RoomAdmin(
+		id int IDENTITY(1,1) PRIMARY KEY,
+		name varchar(50),
+		categoryID int DEFAULT NULL,
+		price float,
+		images varchar(200),
+		description text,
+		quantity int,
+		
+	)
+		
 
 	CREATE TABLE RoomType(
 		RoomTypeName nvarchar(50) PRIMARY KEY,
@@ -62,11 +74,16 @@ USE LUNA_HOTEL;
 	)
 
 
-	CREATE TABLE HotelEvent(
-		EventID smallint PRIMARY KEY,
-		EventTitle nvarchar(50) NOT NULL,
-		EventImg text,
-		EventDiscount float NOT NULL,
+	CREATE TABLE Events(
+		id int IDENTITY(1,1) PRIMARY KEY,
+		title nvarchar(50) NOT NULL,
+		images varchar(300),
+		details varchar(300),
+	)
+	
+	CREATE TABLE EmployeeAdmin(
+		id int IDENTITY(1,1) PRIMARY KEY,
+		[name] varchar(50),
 	)
 
 
@@ -79,13 +96,7 @@ USE LUNA_HOTEL;
 		HotelDesc text,
 	)
 	
-	CREATE TABLE HotelService (
-		ServiceId int IDENTITY(1,1) PRIMARY KEY,
-		ServiceName nvarchar (50) NOT NULL,
-		ServiceDesc text,
-		ServicePrice float NOT NULL,
-		HotelCode smallint FOREIGN KEY REFERENCES Hotel(HotelCode),
-);
+
 
 	CREATE TABLE Room(
 		RoomNo smallint IDENTITY(1,1) PRIMARY KEY,
@@ -121,7 +132,16 @@ USE LUNA_HOTEL;
 		IsMemberShip BIT,
 	)
 	
-
+	
+        CREATE TABLE [dbo].[Comment](
+    		[cmtID] int NOT NULL IDENTITY(1,1) PRIMARY KEY, 
+    		[comment] NVARCHAR(200),
+    		[rateStar] INT,
+    		[RoomNo] SMALLINT FOREIGN KEY REFERENCES Room(RoomNo),
+    		[GuestID] int FOREIGN KEY REFERENCES Guest(GuestID)
+	)
+	
+	
 	CREATE TABLE Booking(
 		BookingID smallint IDENTITY(1,1)PRIMARY KEY,
 		BookingDate date NOT NULL,
@@ -165,6 +185,7 @@ USE LUNA_HOTEL;
 		PaymentStatusID smallint PRIMARY KEY,
 		PaymentStatus nvarchar(30),
 		PaymentActive BIT,
+		PaymentDesc text,
 	)
 	
 
@@ -184,13 +205,7 @@ USE LUNA_HOTEL;
 	)
 	
 
-	CREATE TABLE Discount(
-		DiscountID INT IDENTITY (1,1) PRIMARY KEY,
-		DiscountName NVARCHAR(100) NOT NULL,
-		DiscountDesc text ,
-		DiscountPer INT NOT NULL,
-	)
-
+	
 
 	CREATE TABLE Bill(
 		InvoiceNo int IDENTITY(1,1) PRIMARY KEY,
@@ -200,7 +215,7 @@ USE LUNA_HOTEL;
 		GuestID int FOREIGN KEY REFERENCES Guest(GuestID),
 		RoomNo smallint FOREIGN KEY REFERENCES Room(RoomNo),
 		PaymentID int FOREIGN KEY REFERENCES Payment(PaymentID),
-		DiscountID int FOREIGN KEY REFERENCES Discount(DiscountID),
+	
 	)
 			 
 
