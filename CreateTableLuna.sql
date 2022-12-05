@@ -25,7 +25,6 @@ USE LUNA_HOTEL;
 	DROP TABLE IF EXISTS HotelService;
 	
 
-	
 	CREATE TABLE Account(
 		id int IDENTITY(1,1) PRIMARY KEY,
 		username varchar(50),
@@ -174,7 +173,7 @@ USE LUNA_HOTEL;
 		[NumOfChildrent] [int] NULL,
 		[Price] [decimal](7, 2) NULL,
 		[totalPrice] [decimal](7, 2) NULL,
-		BookingID smallint  FOREIGN KEY REFERENCES Booking(BookingID)
+		BookingID int  FOREIGN KEY REFERENCES Booking(BookingID)
 )
 
 
@@ -233,7 +232,7 @@ USE LUNA_HOTEL;
 		InvoiceNo int IDENTITY(1,1) PRIMARY KEY,
 		IfLateCheckOut BIT,
 		Discount DECIMAL(7,2),
-		BookingID smallint FOREIGN KEY REFERENCES Booking(BookingID),
+		BookingID int FOREIGN KEY REFERENCES Booking(BookingID),
 		GuestID int FOREIGN KEY REFERENCES Guest(GuestID),
 		RoomNo smallint FOREIGN KEY REFERENCES Room(RoomNo),
 		PaymentID int FOREIGN KEY REFERENCES Payment(PaymentID),
