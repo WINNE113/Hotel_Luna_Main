@@ -28,7 +28,7 @@ USE LUNA_HOTEL;
 	CREATE TABLE Account(
 		id int PRIMARY KEY IDENTITY(1,1),
 		username varchar(50),
-		password varchar(50),
+		pass varchar(50),
 		isAdmin BIT,
 	)
 
