@@ -25,6 +25,7 @@ USE LUNA_HOTEL;
 	DROP TABLE IF EXISTS HotelService;
 	
 
+	
 	CREATE TABLE Account(
 		id int IDENTITY(1,1) PRIMARY KEY,
 		username varchar(50),
@@ -43,18 +44,36 @@ USE LUNA_HOTEL;
 		quantity int,
 		
 	)
-		
+
+
+	
+	CREATE TABLE Guest(
+		GuestID int IDENTITY(1,1) PRIMARY KEY,
+		FirstName nvarchar(30) NOT NULL,
+		LastName nvarchar(30) NOT NULL,
+		DOB date,
+		Gen nvarchar(10),
+		CONSTRAINT CHK_Gen CHECK(Gen = 'Male' or Gen = 'Female'),
+		PhoneGuestNo int NOT NULL,
+		Email varchar(50) NOT NULL,
+		GuestPassword varchar(30) NOT NULL,
+		PassportNo int NOT NULL,
+		GuestAddress text,
+		IsMemberShip BIT,
+	)		
 
 	CREATE TABLE RoomType(
 		RoomTypeName nvarchar(50) PRIMARY KEY,
 		RoomPrice DECIMAL(7,2) CHECK (RoomPrice>0),
-		RoomImg text,
-		RoomDesc text,
+		DefaultRoomPrice bigint,
+		RoomImg nvarchar(200) NULL,
+		RoomDesc text NULL,
+		BedType varchar(20) NULL,
 	)
 	
 
 	CREATE TABLE RoomStatus(
-		RoomStatusID smallint PRIMARY KEY,
+		RoomStatusID varchar(10) PRIMARY KEY,
 		RoomStatus nvarchar(20) DEFAULT 'AVAILABLE',
 		RoomStatusDesc text,
 	)
@@ -64,6 +83,7 @@ USE LUNA_HOTEL;
 		RoomRateID smallint PRIMARY KEY,
 		StarRating float CHECK(StarRating >= 0 AND StarRating <= 5),
 		RoomComment text,
+		GuestID int FOREIGN KEY REFERENCES Guest(GuestID),
 	)
 	
 
@@ -87,16 +107,18 @@ USE LUNA_HOTEL;
 	)
 
 
+
 	CREATE TABLE Hotel(
-		HotelCode smallint PRIMARY KEY,
+		HotelCode varchar(10) PRIMARY KEY,
 		CityID smallint FOREIGN KEY REFERENCES City(CityID),
 		HotelAddress text NOT NULL,
 		NumRooms smallint NOT NULL,
 		PhoneHotelNo int NOT NULL,
 		HotelDesc text,
+		StarRating int,
 	)
 	
-
+	
 
 	CREATE TABLE Room(
 		RoomNo smallint IDENTITY(1,1) PRIMARY KEY,
@@ -104,8 +126,8 @@ USE LUNA_HOTEL;
 		FloorNo smallint NOT NULL,
 		RoomRateID smallint FOREIGN KEY REFERENCES RoomRate(RoomRateID),
 		RoomTypeName nvarchar(50) FOREIGN KEY REFERENCES RoomType(RoomTypeName),
-		HotelCode smallint FOREIGN KEY REFERENCES Hotel(HotelCode),
-		RoomStatusID smallint FOREIGN KEY REFERENCES RoomStatus(RoomStatusID),
+		HotelCode varchar(10) FOREIGN KEY REFERENCES Hotel(HotelCode),
+		RoomStatusID varchar(10) FOREIGN KEY REFERENCES RoomStatus(RoomStatusID),
 	)
 	
 
@@ -117,20 +139,6 @@ USE LUNA_HOTEL;
 	)
 	
 
-	CREATE TABLE Guest(
-		GuestID int IDENTITY(1,1) PRIMARY KEY,
-		FirstName nvarchar(30) NOT NULL,
-		LastName nvarchar(30) NOT NULL,
-		DOB date,
-		Gen nvarchar(10),
-		CONSTRAINT CHK_Gen CHECK(Gen = 'Male' or Gen = 'Female'),
-		PhoneGuestNo int NOT NULL,
-		Email varchar(50) NOT NULL,
-		GuestPassword varchar(30) NOT NULL,
-		PassportNo int NOT NULL,
-		GuestAddress text,
-		IsMemberShip BIT,
-	)
 	
 	
         CREATE TABLE [dbo].[Comment](
@@ -142,6 +150,7 @@ USE LUNA_HOTEL;
 	)
 	
 	
+
 	CREATE TABLE Booking(
 		BookingID smallint IDENTITY(1,1)PRIMARY KEY,
 		BookingDate date NOT NULL,
@@ -149,12 +158,27 @@ USE LUNA_HOTEL;
 		CheckOutDate  date NOT NULL,
 		NumPerson smallint NOT NULL,
 		BookingRoomCount int,
-		HotelCode smallint FOREIGN KEY REFERENCES Hotel(HotelCode),
+		HotelCode varchar(10) FOREIGN KEY REFERENCES Hotel(HotelCode),
 		GuestID int FOREIGN KEY REFERENCES Guest(GuestID),
 		RoomNo smallint FOREIGN KEY REFERENCES Room(RoomNo),
 		BookingStatusID smallint FOREIGN KEY REFERENCES BookingStatus(BookingStatusID),
 	)
 	
+	CREATE TABLE [dbo].[BookingDetail](
+		[id] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	
+		[RoomNo] [smallint] NOT NULL,
+		[BookingDate] [date] NULL,
+		[CheckOutDate] [date] NULL,
+		[BookingTime] [time](7) NULL,
+		[CheckOutTime] [time](7) NULL,
+		[NumOfAdults] [int] NULL,
+		[NumOfChildrent] [int] NULL,
+		[Price] [decimal](7, 2) NULL,
+		[totalPrice] [decimal](7, 2) NULL,
+		BookingID smallint  FOREIGN KEY REFERENCES Booking(BookingID)
+)
+
 
 	CREATE TABLE EmployeeRole(
 		RoleID smallint PRIMARY KEY,
@@ -176,7 +200,7 @@ USE LUNA_HOTEL;
 		Salary bigint CHECK (Salary>0),
 		CreatedTime time,
 		UpdatedTime time,
-		HotelCode smallint FOREIGN KEY REFERENCES Hotel(HotelCode),
+		HotelCode varchar(10) FOREIGN KEY REFERENCES Hotel(HotelCode),
 		RoleID smallint FOREIGN KEY REFERENCES EmployeeRole(RoleID),
 	)
 	
